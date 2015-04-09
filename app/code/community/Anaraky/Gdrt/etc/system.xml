@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    
+    <tabs>
+        <gdrt_tab translate="label">
+            <label>Anaraky</label>
+            <sort_order>1</sort_order>
+        </gdrt_tab>
+    </tabs>
+    
+    <sections>
+        <gdrt translate="label">
+            <label>GDRT Settings</label>
+            <tab>gdrt_tab</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <!-- general settings of the Google Dinamic Remarketing Tag -->
+                <general translate="label">
+                    <label>General settings</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <gdrt_enable translate="label">
+                            <label>Enable Google Remarketing Tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gdrt_enable>
+                        <gc_id translate="label">
+                            <label>google_conversion_id</label>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gc_id>
+                        <gc_label translate="label">
+                            <label>google_conversion_label</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[
+                                This field is optional
+                                ]]>
+                            </comment>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gc_label>
+                        <gdrt_product_id translate="label">
+                            <label>Use for product id</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>gdrt/adminhtml_system_config_source_useasid</source_model>
+                            <comment>
+                                <![CDATA[
+                                Must be same as 'Product ID' in the data feeds of the Google Merchant
+                                ]]>
+                            </comment>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gdrt_product_id>
+                        <gdrt_product_id_prefix translate="label">
+                            <label>Prefix for product id</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[ For example: "prod_" ]]>
+                            </comment>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gdrt_product_id_prefix>
+                        <gdrt_product_id_prefix_ofcp translate="label">
+                            <label>Use prefix only for configurable and grouped products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gdrt_product_id_prefix_ofcp>
+                        <gdrt_product_id_ending translate="label">
+                            <label>Ending for product id</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[ For example: "_prod" ]]>
+                            </comment>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gdrt_product_id_ending>
+                        <gdrt_product_id_ending_ofcp translate="label">
+                            <label>Use ending only for configurable and grouped products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gdrt_product_id_ending_ofcp>
+                        <gdrt_tax translate="label">
+                            <label>Total value</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>tax/system_config_source_priceType</source_model>
+                            <comment>
+                                <![CDATA[
+                                The value of 'ecomm_totalvalue' with or without taxes?
+                                ]]>
+                            </comment>
+                            <depends>
+                                <gdrt_enable>1</gdrt_enable>
+                            </depends>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gdrt_tax>
+                    </fields>
+                </general>
+                
+                <pages translate="label">
+                    <label>Settings of pages</label>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <home translate="label">
+                            <label>Home</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[
+                                Model name / Controller name / Action name<br/>
+                                Action name is optional
+                                ]]>
+                            </comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </home>
+                        <searchresults translate="label">
+                            <label>Search results</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[
+                                Structure is the same as in the previous field
+                                ]]>
+                            </comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </searchresults>
+                        <category translate="label">
+                            <label>Category</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[
+                                Structure is the same as in the previous field
+                                ]]>
+                            </comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category>
+                        <product translate="label">
+                            <label>Product</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[
+                                Structure is the same as in the previous field
+                                ]]>
+                            </comment>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product>
+                        <cart translate="label">
+                            <label>Cart</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[
+                                Structure is the same as in the previous field
+                                ]]>
+                            </comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cart>
+                        <purchase translate="label">
+                            <label>Purchase</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[
+                                Structure is the same as in the previous field
+                                ]]>
+                            </comment>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </purchase>
+                    </fields>
+                </pages>
+				
+                <debug translate="label">
+                    <label>Debug</label>
+                    <comment>
+                        <![CDATA[
+                        Highly recommended to set the "Allowed IPs" in the "Developer Client Restrictions" 
+                        (System > Configuration > Developer). 
+                        ]]>
+                    </comment>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_info>
+                            <label>Show page information</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_info>
+                    </fields>
+                </debug>
+            </groups>
+        </gdrt>
+    </sections>
+</config>
