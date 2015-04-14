@@ -48,7 +48,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract {
             $inclTax = true;
                 
         $type = $this->getData('pageType');
-        $params = array('ecomm_pagetype' => 'siteview');
+        $params = array('ecomm_pagetype' => 'other');
         switch ($type) {
             case 'home':
                 $params = array( 'ecomm_pagetype' => 'home');
@@ -101,7 +101,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract {
                     );
                 }
                 else
-                    $params = array( 'ecomm_pagetype' => 'siteview' );
+                    $params = array( 'ecomm_pagetype' => 'other' );
                 
                 unset($cart, $items, $item, $data);
                 break;
