@@ -111,13 +111,17 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract {
                                 Mage::getSingleton('checkout/session')
                                             ->getLastRealOrderId());
 
+				$product = Mage::getModel('catalog/product');
+
                 $data  = array();
                 $totalvalue = 0;
                 $items = $order->getAllItems();
                 
                 foreach ($items as $item)
                 {
-                    $data[0][] = $this->getEcommProdid($item->getProduct());
+                    // $data[0][] = $this->getEcommProdid($item->getProduct());
+					$productId = $product->getIdBySku($item->getSku());
+                    $data[0][] = $this->getEcommProdid($product->load($productId));
                     $data[1][] = (int)$item->getQtyToInvoice();
                     $totalvalue += $inclTax ? $item->getRowTotalInclTax() : $item->getRowTotal();
                 }
