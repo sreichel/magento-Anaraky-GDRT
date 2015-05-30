@@ -1,0 +1,13 @@
+{
+	"name": "maxxcount/mx-product-followup",
+	"type": "magento-module",
+	"description": "Google Dynamic Remarketing Tag for Magento",
+	"homepage": "https://bitbucket.org/s_reichel/magento-anaraky-gdrt",
+	"authors": [
+		{
+			"name": "Neodan",
+			"homepage": "http://anaraky.com/gdrt",
+			"role": "Author/Maintainer"
+		}
+	]
+}
