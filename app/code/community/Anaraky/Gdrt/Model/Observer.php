@@ -1,21 +1,18 @@
 <?php
-class Anaraky_Gdrt_Model_Observer {
-    
-    public function addGdrtBlock(Varien_Event_Observer $observer) {
-        if (Mage::getStoreConfig('gdrt/general/gdrt_enable', Mage::app()->getStore()->getId()) === "1") 
-        {
+class Anaraky_Gdrt_Model_Observer
+{
+    public function addGdrtBlock(Varien_Event_Observer $observer)
+	{
+        if (Mage::getStoreConfig('gdrt/general/gdrt_enable', Mage::app()->getStore()->getId()) === "1") {
             $gdrtPages = Mage::getStoreConfig('gdrt/pages');
             $mName = Mage::app()->getRequest()->getModuleName();
             $cName = Mage::app()->getRequest()->getControllerName();
             $aName = Mage::app()->getRequest()->getActionName();
             $pageType = 'other';
             
-            foreach ($gdrtPages as $k => $v)
-            {
+            foreach ($gdrtPages as $k => $v) {
                 $v = rtrim($v, '/');
-                if ($mName . '/' . $cName . '/' . $aName == $v ||
-                    $mName . '/' . $cName == $v)
-                {
+                if ($mName . '/' . $cName . '/' . $aName == $v || $mName . '/' . $cName == $v) {
                     $pageType = $k;
                 }
             }

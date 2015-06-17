@@ -3,6 +3,7 @@
 	"type": "magento-module",
 	"description": "Google Dynamic Remarketing Tag for Magento",
 	"homepage": "https://bitbucket.org/s_reichel/magento-anaraky-gdrt",
+	"license": "OSL-3.0",
 	"authors": [
 		{
 			"name": "Neodan",

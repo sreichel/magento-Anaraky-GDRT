@@ -119,8 +119,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract {
                 
                 foreach ($items as $item)
                 {
-                    // $data[0][] = $this->getEcommProdid($item->getProduct());
-					$productId = $product->getIdBySku($item->getSku());
+                    $productId = $product->getIdBySku($item->getSku());
                     $data[0][] = $this->getEcommProdid($product->load($productId));
                     $data[1][] = (int)$item->getQtyToInvoice();
                     $totalvalue += $inclTax ? $item->getRowTotalInclTax() : $item->getRowTotal();
