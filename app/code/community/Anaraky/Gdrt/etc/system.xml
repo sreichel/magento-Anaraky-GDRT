@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-    
-    <tabs>
-        <gdrt_tab translate="label">
-            <label>Anaraky</label>
-            <sort_order>1</sort_order>
-        </gdrt_tab>
-    </tabs>
-    
     <sections>
-        <gdrt translate="label">
-            <label>GDRT Settings</label>
-            <tab>gdrt_tab</tab>
-            <sort_order>1000</sort_order>
-            <show_in_default>1</show_in_default>
-            <show_in_website>1</show_in_website>
-            <show_in_store>1</show_in_store>
+        <google>
             <groups>
-                <!-- general settings of the Google Dinamic Remarketing Tag -->
-                <general translate="label">
-                    <label>General settings</label>
-                    <sort_order>1</sort_order>
+                <gdrt_general translate="label">
+                    <label><![CDATA[Google Dynamic Remarketing - General settings <i style="color: lightblue;">- Anaraky GDRT</i>]]></label>
+                    <sort_order>9991</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -148,11 +133,11 @@
                             <show_in_store>1</show_in_store>
                         </gdrt_tax>
                     </fields>
-                </general>
+                </gdrt_general>
                 
-                <pages translate="label">
-                    <label>Settings of pages</label>
-                    <sort_order>2</sort_order>
+                <gdrt_pages translate="label">
+					<label><![CDATA[Google Dynamic Remarketing - Settings of pages <i style="color: lightblue;">- Anaraky GDRT</i>]]></label>
+                    <sort_order>9992</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -237,17 +222,17 @@
                             <show_in_store>1</show_in_store>
                         </purchase>
                     </fields>
-                </pages>
+                </gdrt_pages>
 				
-                <debug translate="label">
-                    <label>Debug</label>
+                <gdrt_debug translate="label">
+					<label><![CDATA[Google Dynamic Remarketing - Debug <i style="color: lightblue;">- Anaraky GDRT</i>]]></label>
                     <comment>
                         <![CDATA[
                         Highly recommended to set the "Allowed IPs" in the "Developer Client Restrictions" 
                         (System > Configuration > Developer). 
                         ]]>
                     </comment>
-                    <sort_order>3</sort_order>
+                    <sort_order>9993</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -262,8 +247,8 @@
                             <show_in_store>1</show_in_store>
                         </show_info>
                     </fields>
-                </debug>
+                </gdrt_debug>
             </groups>
-        </gdrt>
+        </google>
     </sections>
 </config>

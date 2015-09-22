@@ -2,7 +2,6 @@
 
 class Anaraky_Gdrt_Model_Adminhtml_System_Config_Source_Useasid
 {
-
     /**
      * Options getter
      *
@@ -28,5 +27,4 @@ class Anaraky_Gdrt_Model_Adminhtml_System_Config_Source_Useasid
             1 => 'Product SKU',
         );
     }
-
 }

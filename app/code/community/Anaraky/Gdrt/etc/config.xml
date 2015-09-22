@@ -25,8 +25,8 @@
     </global>
     
     <default>
-        <gdrt>
-            <general>
+        <google>
+            <gdrt_general>
                 <gdrt_enable>0</gdrt_enable>
                 <gdrt_product_id>1</gdrt_product_id>
                 <gdrt_product_id_prefix></gdrt_product_id_prefix>
@@ -34,16 +34,16 @@
                 <gdrt_product_id_ending></gdrt_product_id_ending>
                 <gdrt_product_id_ending_ofcp>0</gdrt_product_id_ending_ofcp>
                 <gdrt_tax>0</gdrt_tax>
-            </general>
-            <pages>
+            </gdrt_general>
+            <gdrt_pages>
                 <home>cms/index/index</home>
                 <searchresults>catalogsearch/result/index</searchresults>
                 <category>catalog/category/view</category>
                 <product>catalog/product/view</product>
                 <cart>checkout/cart/index</cart>
                 <purchase>checkout/onepage/success</purchase>
-            </pages>
-        </gdrt>
+            </gdrt_pages>
+        </google>
     </default>
     
     <frontend>
