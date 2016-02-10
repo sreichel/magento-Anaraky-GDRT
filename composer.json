@@ -2,7 +2,7 @@
 	"name": "anaraky/gdrt",
 	"type": "magento-module",
 	"description": "Google Dynamic Remarketing Tag for Magento",
-	"homepage": "https://bitbucket.org/s_reichel/magento-anaraky-gdrt",
+	"homepage": "https://github.com/sreichel/magento-Anaraky-GDRT",
 	"license": "OSL-3.0",
 	"authors": [
 		{
