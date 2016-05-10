@@ -2,7 +2,9 @@
 
 Google remarketing can help you reach people who have previously visited your website as they visit other sites on the Google Display Network or search on Google. Using remarketing, you can show these customers messages tailored to them based on which sections of your site they visited.
 
-With Anaraky GDRT you can simply and easy integrate the Google Dynamic Remarketing Tag in your store's pages. 
+With Anaraky GDRT you can simply and easy integrate the Google Dynamic Remarketing Tag in your store's pages.
+
+More info at http://www.magentocommerce.com/magento-connect/anaraky-gdrt-google-dynamic-remarketing-tag-for-magento.html
 
 ## Features:
 - Very easy to set up.
@@ -21,3 +23,25 @@ With Anaraky GDRT you can simply and easy integrate the Google Dynamic Remarketi
 - 1.8
 - 1.8.1
 - 1.9
+
+## Installation:
+
+### Via modman
+```
+#!php
+modman clone https://github.com/sreichel/magento-Anaraky-GDRT.git
+```
+### Via composer:
+```
+#!php
+{
+    "require": {
+        "anaraky/gdrt": "*",
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/sreichel/magento-Anaraky-GDRT.git"
+        }
+    ]
+}

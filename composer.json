@@ -1,14 +1,17 @@
 {
-	"name": "anaraky/gdrt",
-	"type": "magento-module",
-	"description": "Google Dynamic Remarketing Tag for Magento",
-	"homepage": "https://github.com/sreichel/magento-Anaraky-GDRT",
-	"license": "OSL-3.0",
-	"authors": [
-		{
-			"name": "Neodan",
-			"homepage": "http://anaraky.com/gdrt",
-			"role": "Author/Maintainer"
-		}
-	]
+    "name": "anaraky/gdrt",
+    "type": "magento-module",
+    "description": "Google Dynamic Remarketing Tag for Magento",
+    "homepage": "https://github.com/sreichel/magento-Anaraky-GDRT",
+    "license": "OSL-3.0",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors": [
+        {
+            "name": "Neodan",
+            "homepage": "http://anaraky.com/gdrt",
+            "role": "Author/Maintainer"
+        }
+    ]
 }
