@@ -28,12 +28,10 @@ More info at http://www.magentocommerce.com/magento-connect/anaraky-gdrt-google-
 
 ### Via modman
 ```
-#!php
 modman clone https://github.com/sreichel/magento-Anaraky-GDRT.git
 ```
 ### Via composer:
 ```
-#!php
 {
     "require": {
         "anaraky/gdrt": "*",
