@@ -7,51 +7,51 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
     private $pid_prefix_ofcp = 0;
     private $pid_ending = "";
     private $pid_ending_ofcp = 0;
-    
+
     private function getEcommProdid($product)
     {
         $ecomm_prodid = (string)($this->pid ? $product->getId() : $product->getSku());
 
         $ofcp = in_array($product->getTypeId(), array(Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE, Mage_Catalog_Model_Product_Type::TYPE_GROUPED));
-        
+
         if (!empty($this->pid_prefix) && (($this->pid_prefix_ofcp === 1 && $ofcp) || $this->pid_prefix_ofcp === 0)) {
             $ecomm_prodid = $this->pid_prefix . $ecomm_prodid;
         }
-        
+
         if (!empty($this->pid_ending) && (($this->pid_ending_ofcp === 1 && $ofcp) || $this->pid_ending_ofcp === 0)) {
             $ecomm_prodid .= $this->pid_ending;
         }
-        
+
         return $ecomm_prodid;
     }
-    
+
     private function getParams()
     {
         if ((int)Mage::getStoreConfig('google/gdrt_general/gdrt_product_id', $this->storeId) === 0) {
             $this->pid = true;
         }
-        
+
         $this->pid_prefix = Mage::getStoreConfig('google/gdrt_general/gdrt_product_id_prefix', $this->storeId);
         $this->pid_prefix_ofcp = (int)Mage::getStoreConfig('google/gdrt_general/gdrt_product_id_prefix_ofcp', $this->storeId);
         $this->pid_ending = Mage::getStoreConfig('google/gdrt_general/gdrt_product_id_ending', $this->storeId);
         $this->pid_ending_ofcp = (int)Mage::getStoreConfig('google/gdrt_general/gdrt_product_id_ending_ofcp', $this->storeId);
-        
+
         $inclTax = false;
         if ((int)Mage::getStoreConfig('google/gdrt_general/gdrt_tax', $this->storeId) === 1) {
             $inclTax = true;
         }
-        
+
         $type = $this->getData('pageType');
         $params = array('ecomm_pagetype' => 'other');
         switch ($type) {
             case 'home':
-                $params = array( 'ecomm_pagetype' => 'home');
+                $params = array('ecomm_pagetype' => 'home');
                 break;
-            
+
             case 'searchresults':
-                $params = array( 'ecomm_pagetype' => 'searchresults');
+                $params = array('ecomm_pagetype' => 'searchresults');
                 break;
-            
+
             case 'category':
                 $category = Mage::registry('current_category');
                 $params = array(
@@ -60,11 +60,11 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 );
                 unset($category);
                 break;
-            
+
             case 'product':
                 $product = Mage::registry('current_product');
                 $totalvalue = Mage::helper('tax')->getPrice($product, $product->getFinalPrice(), $inclTax);
-                        
+
                 $params = array(
                     'ecomm_prodid' => $this->getEcommProdid($product),
                     'ecomm_pagetype' => 'product',
@@ -72,11 +72,11 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 );
                 unset($product);
                 break;
-            
+
             case 'cart':
                 $cart = Mage::getSingleton('checkout/session')->getQuote();
                 $items = $cart->getAllVisibleItems();
-                
+
                 if (count($items) > 0) {
                     $data  = array();
                     $totalvalue = 0;
@@ -95,10 +95,10 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 } else {
                     $params = array( 'ecomm_pagetype' => 'other' );
                 }
-                
+
                 unset($cart, $items, $item, $data);
                 break;
-            
+
             case 'purchase':
                 $lastOrderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
                 $order = Mage::getModel('sales/order')->loadByIncrementId($lastOrderId);
@@ -108,14 +108,14 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 $data  = array();
                 $totalvalue = 0;
                 $items = $order->getAllItems();
-                
+
                 foreach ($items as $item) {
                     $productId = $product->getIdBySku($item->getSku());
                     $data[0][] = $this->getEcommProdid($product->load($productId));
                     $data[1][] = (int)$item->getQtyToInvoice();
                     $totalvalue += $inclTax ? $item->getRowTotalInclTax() : $item->getRowTotal();
                 }
-                
+
                 $params = array(
                     'ecomm_prodid' => $data[0],
                     'ecomm_pagetype' => 'purchase',
@@ -124,23 +124,23 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 );
                 unset($order, $items, $item);
                 break;
-            
+
             default:
                 break;
         }
-        
+
         return $params;
     }
-    
+
     private function paramsToJS($params)
     {
         $result = array();
-        
+
         foreach ($params as $key => $value) {
             if (is_array($value) && count($value) == 1) {
                 $value = $value[0];
             }
-            
+
             if (is_array($value)) {
                 if (is_string($value[0])) {
                     $value = '["' . implode('","', $value) . '"]';
@@ -153,14 +153,14 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
 
             $result[] = $key . ': ' . $value;
         }
-        
+
         return PHP_EOL . "\t" . implode(',' . PHP_EOL . "\t", $result) . PHP_EOL;
     }
-    
+
     private function paramsToURL($params)
     {
         $result = array();
-        
+
         foreach ($params as $key => $value) {
             if (is_array($value)) {
                 $value = implode(',', $value);
@@ -168,19 +168,19 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
 
             $result[] = $key . '=' . $value;
         }
-        
+
         return urlencode(implode(';', $result));
     }
-    
+
     private function paramsToDebug($params)
     {
         $result = '';
-        
+
         foreach ($params as $key => $value) {
             if (is_array($value) && count($value) == 1) {
                 $value = $value[0];
             }
-            
+
             if (is_array($value)) {
                 if (is_string($value[0])) {
                     $value = '["' . implode('","', $value) . '"]';
@@ -196,10 +196,10 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 '           <td style="text-align:left;"> ' . $value . '</td>' .
                 '        </tr>';
         }
-        
+
         return $result;
     }
-    
+
     protected function _toHtml()
     {
         $this->storeId = Mage::app()->getStore()->getId();
@@ -208,7 +208,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
         $gcParams = $this->getParams();
 
         $version = (string)Mage::getConfig()->getNode()->modules->Anaraky_Gdrt->version;
-        
+
         $s = PHP_EOL .
             '<!-- Anaraky GDRT v.' . $version . ' script begin -->' . PHP_EOL .
             '<script type="text/javascript">' . PHP_EOL .
@@ -228,7 +228,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
             '</div>' . PHP_EOL .
             '</noscript>' . PHP_EOL .
             '<!-- Anaraky GDRT script end -->' . PHP_EOL;
-        
+
         if ((int)Mage::getStoreConfig('google/gdrt_debug/show_info', $this->storeId) === 1) {
             $lk = str_replace(' ', '', Mage::getStoreConfig('dev/restrict/allow_ips', $this->storeId));
             $ips = explode(',', $lk);
@@ -246,7 +246,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                     '</div>';
             }
         }
-        
+
         return $s;
     }
 }

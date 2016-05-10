@@ -9,14 +9,14 @@ class Anaraky_Gdrt_Model_Observer
             $cName = Mage::app()->getRequest()->getControllerName();
             $aName = Mage::app()->getRequest()->getActionName();
             $pageType = 'other';
-            
+
             foreach ($gdrtPages as $k => $v) {
                 $v = rtrim($v, '/');
                 if ($mName . '/' . $cName . '/' . $aName == $v || $mName . '/' . $cName == $v) {
                     $pageType = $k;
                 }
             }
-            
+
             $layout = $observer->getEvent()->getLayout();
             $block = '<reference name="before_body_end">
                           <block type="gdrt/script" name="gdrt_block">
@@ -30,7 +30,7 @@ class Anaraky_Gdrt_Model_Observer
                               </action>
                           </block>
                       </reference>';
-            
+
             $layout->getUpdate()->addUpdate($block);
             return $this;
         }
