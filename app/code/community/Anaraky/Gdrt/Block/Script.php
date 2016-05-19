@@ -63,7 +63,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
 
             case 'product':
                 $product = Mage::registry('current_product');
-                $totalvalue = Mage::helper('tax')->getPrice($product, $product->getFinalPrice(), $inclTax);
+                $totalvalue = $this->_getProductPrice($product);
 
                 $params = array(
                     'ecomm_prodid' => $this->getEcommProdid($product),
@@ -248,5 +248,36 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
         }
 
         return $s;
+    }
+
+    private function _getProductPrice($product, $inclTax)
+    {
+         $totalvalue = 0;
+         
+        // check if we are handling grouped products
+        if ($product->getTypeId() == 'grouped') {
+            $groupedSimpleProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+            $groupedPrices = array();
+         
+            foreach ($groupedSimpleProducts as $gSimpleProduct) { 
+                $groupedPrices[] = $this->_getProductPrice($gSimpleProduct);
+            }
+            $totalvalue = min($groupedPrices);
+        } else { // handle other product types
+            $_price = Mage::helper('tax')->getPrice($product, $product->getPrice(), $inclTax);
+            $_specialPrice = Mage::helper('tax')->getPrice($product, $product->getSpecialPrice(), $inclTax);
+            $_finalPrice = Mage::helper('tax')->getPrice($product, $product->getFinalPrice(), $inclTax);
+         
+            if ($_price == $_finalPrice) { // no special price
+                $totalvalue = (float)$_price;
+            } else { // get special price
+                if ((float)$_finalPrice > 0 && (float)$_finalPrice <= (float)$_price) {
+                    $totalvalue = (float)$_finalPrice;
+                } else {
+                    $totalvalue = (float)$_price;
+                }
+            }
+        }
+        return $totalvalue;
     }
 }
