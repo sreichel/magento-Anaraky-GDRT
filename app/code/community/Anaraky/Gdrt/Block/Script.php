@@ -36,10 +36,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
         $this->pid_ending = Mage::getStoreConfig('google/gdrt_general/gdrt_product_id_ending', $this->storeId);
         $this->pid_ending_ofcp = (int)Mage::getStoreConfig('google/gdrt_general/gdrt_product_id_ending_ofcp', $this->storeId);
 
-        $inclTax = false;
-        if ((int)Mage::getStoreConfig('google/gdrt_general/gdrt_tax', $this->storeId) === 1) {
-            $inclTax = true;
-        }
+        $inclTax = Mage::getStoreConfigFlag('google/gdrt_general/gdrt_tax', $this->storeId);
 
         $type = $this->getData('pageType');
         $params = array('ecomm_pagetype' => 'other');
@@ -63,7 +60,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
 
             case 'product':
                 $product = Mage::registry('current_product');
-                $totalvalue = $this->_getProductPrice($product);
+                $totalvalue = $this->_getProductPrice($product, $inclTax);
 
                 $params = array(
                     'ecomm_prodid' => $this->getEcommProdid($product),
