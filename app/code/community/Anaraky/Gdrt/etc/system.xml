@@ -134,9 +134,9 @@
                         </gdrt_tax>
                     </fields>
                 </gdrt_general>
-                
+
                 <gdrt_pages translate="label">
-					<label><![CDATA[Google Dynamic Remarketing - Settings of pages <i style="color: lightblue;">- Anaraky GDRT</i>]]></label>
+                    <label><![CDATA[Google Dynamic Remarketing - Settings of pages <i style="color: lightblue;">- Anaraky GDRT</i>]]></label>
                     <sort_order>9992</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
@@ -223,13 +223,13 @@
                         </purchase>
                     </fields>
                 </gdrt_pages>
-				
+
                 <gdrt_debug translate="label">
-					<label><![CDATA[Google Dynamic Remarketing - Debug <i style="color: lightblue;">- Anaraky GDRT</i>]]></label>
+                    <label><![CDATA[Google Dynamic Remarketing - Debug <i style="color: lightblue;">- Anaraky GDRT</i>]]></label>
                     <comment>
                         <![CDATA[
-                        Highly recommended to set the "Allowed IPs" in the "Developer Client Restrictions" 
-                        (System > Configuration > Developer). 
+                        Highly recommended to set the "Allowed IPs" in the "Developer Client Restrictions"
+                        (System > Configuration > Developer).
                         ]]>
                     </comment>
                     <sort_order>9993</sort_order>

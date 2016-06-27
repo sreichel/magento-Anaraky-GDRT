@@ -22,6 +22,27 @@
                 <class>Anaraky_Gdrt_Block</class>
             </gdrt>
         </blocks>
+        <resources>
+            <anaraky_gdrt_setup>
+                <setup>
+                    <module>Anaraky_Gdrt</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </anaraky_gdrt_setup>
+            <anaraky_gdrt_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </anaraky_gdrt_write>
+            <anaraky_gdrt_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </anaraky_gdrt_read>
+        </resources>
     </global>
     
     <default>
