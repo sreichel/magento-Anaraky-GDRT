@@ -51,10 +51,19 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
 
             case 'category':
                 $category = Mage::registry('current_category');
+                $productCollections = $category->getProductCollection()
+                    ->addAttributeToSelect('sku');
+                $data = array();
+                foreach ($productCollections as $product) {
+                    $data[] = $this->getEcommProdid($product);
+                }
+
                 $params = array(
+                    'ecomm_prodid' => $data,
                     'ecomm_pagetype' => 'category',
                     'ecomm_category' => (string)$category->getName()
                 );
+
                 unset($category);
                 break;
 
