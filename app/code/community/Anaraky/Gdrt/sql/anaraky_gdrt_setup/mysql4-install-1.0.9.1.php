@@ -11,32 +11,32 @@ $installer->run("
     ");
 $installer->run("
     UPDATE {$this->getTable('core_config_data')}
-    SET path = 'google/gdrt_general/mail_template_ebay'
+    SET path = 'google/gdrt_general/gdrt_product_id'
     WHERE path = 'gdrt/general/gdrt_product_id';
     ");
 $installer->run("
     UPDATE {$this->getTable('core_config_data')}
-    SET path = 'google/gdrt_general/mail_template_ebay'
+    SET path = 'google/gdrt_general/gdrt_product_id_prefix'
     WHERE path = 'gdrt/general/gdrt_product_id_prefix';
     ");
 $installer->run("
     UPDATE {$this->getTable('core_config_data')}
-    SET path = 'google/gdrt_general/mail_template_ebay'
+    SET path = 'google/gdrt_general/gdrt_product_id_prefix_ofcp'
     WHERE path = 'gdrt/general/gdrt_product_id_prefix_ofcp';
     ");
 $installer->run("
     UPDATE {$this->getTable('core_config_data')}
-    SET path = 'google/gdrt_general/mail_template_ebay'
+    SET path = 'google/gdrt_general/gdrt_product_id_ending'
     WHERE path = 'gdrt/general/gdrt_product_id_ending';
     ");
 $installer->run("
     UPDATE {$this->getTable('core_config_data')}
-    SET path = 'google/gdrt_general/mail_template_ebay'
+    SET path = 'google/gdrt_general/gdrt_product_id_ending_ofcp'
     WHERE path = 'gdrt/general/gdrt_product_id_ending_ofcp';
     ");
 $installer->run("
     UPDATE {$this->getTable('core_config_data')}
-    SET path = 'google/gdrt_general/mail_template_shop'
+    SET path = 'google/gdrt_general/gdrt_tax'
     WHERE path = 'gdrt/general/gdrt_tax';
     ");
 
