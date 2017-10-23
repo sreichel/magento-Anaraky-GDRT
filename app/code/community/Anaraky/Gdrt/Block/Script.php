@@ -63,19 +63,24 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 $totalvalue = $this->_getProductPrice($product, $inclTax);
 
                 $params = array(
+                    'isSaleItem' => (int)($product->getFinalPrice() < $product->getPrice()),
                     'ecomm_prodid' => $this->getEcommProdid($product),
                     'ecomm_pagetype' => 'product',
-                    'ecomm_totalvalue' =>  (float)number_format($totalvalue, '2', '.', '')
+                    'ecomm_totalvalue' => (float)number_format($totalvalue, '2', '.', '')
                 );
-                unset($product);
+
+                if ($category = Mage::registry('current_category')) {
+                    $params['ecomm_category'] = (string)$category->getName();
+                }
+
+                unset($category, $product);
                 break;
 
             case 'cart':
                 $cart = Mage::getSingleton('checkout/session')->getQuote();
                 $items = $cart->getAllVisibleItems();
-
                 if (count($items) > 0) {
-                    $data  = array();
+                    $data = array();
                     $totalvalue = 0;
                     foreach ($items as $item) {
                         $data[0][] = $this->getEcommProdid($item->getProduct());
@@ -90,7 +95,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                         'ecomm_totalvalue' => (float)number_format($totalvalue, '2', '.', '')
                     );
                 } else {
-                    $params = array( 'ecomm_pagetype' => 'other' );
+                    $params = array('ecomm_pagetype' => 'other');
                 }
 
                 unset($cart, $items, $item, $data);
@@ -213,7 +218,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
             'var google_tag_params = {' . $this->paramsToJS($gcParams) . '};' . PHP_EOL .
             'var google_conversion_id = ' . $gcId . ';' . PHP_EOL .
             (!empty($gcLabel) ? 'var google_conversion_label = "' . $gcLabel . '";' . PHP_EOL : '') .
-            'var google_custom_params = google_tag_params;' . PHP_EOL .
+            'var google_custom_params = window.google_tag_params;' . PHP_EOL .
             'var google_remarketing_only = true;' . PHP_EOL .
             '/* ]]> */' . PHP_EOL .
             '</script>' . PHP_EOL .
@@ -256,7 +261,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
             $groupedSimpleProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             $groupedPrices = array();
          
-            foreach ($groupedSimpleProducts as $gSimpleProduct) { 
+            foreach ($groupedSimpleProducts as $gSimpleProduct) {
                 $groupedPrices[] = $this->_getProductPrice($gSimpleProduct);
             }
             $totalvalue = min($groupedPrices);
