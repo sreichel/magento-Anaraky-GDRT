@@ -49,13 +49,22 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 $params = array('ecomm_pagetype' => 'searchresults');
                 break;
 
-            case 'category':
+           case 'category':
                 $category = Mage::registry('current_category');
+                $productCollections = $category->getProductCollection()
+                    ->addAttributeToSelect('sku');
+                $data = array();
+                foreach ($productCollections as $product) {
+                    $data[] = $this->getEcommProdid($product);
+                }
+
                 $params = array(
+                    'ecomm_prodid' => $data,
                     'ecomm_pagetype' => 'category',
                     'ecomm_category' => (string)$category->getName()
                 );
-                unset($category);
+
+                unset($category, $data, $productCollections, $product);
                 break;
 
             case 'product':
@@ -83,11 +92,15 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                     $data = array();
                     $totalvalue = 0;
                     foreach ($items as $item) {
-                        $data[0][] = $this->getEcommProdid($item->getProduct());
+                        $product = Mage::getModel('catalog/product')
+                            ->getCollection()
+                            ->addAttributeToFilter('entity_id', $item->getProductId())
+                            ->addAttributeToSelect('sku')->getFirstItem();
+
+                        $data[0][] = $this->getEcommProdid($product);
                         $data[1][] = (int)$item->getQty();
                         $totalvalue += $inclTax ? $item->getRowTotalInclTax() : $item->getRowTotal();
                     }
-
                     $params = array(
                         'ecomm_prodid' => $data[0],
                         'ecomm_pagetype' => 'cart',
@@ -97,8 +110,7 @@ class Anaraky_Gdrt_Block_Script extends Mage_Core_Block_Abstract
                 } else {
                     $params = array('ecomm_pagetype' => 'other');
                 }
-
-                unset($cart, $items, $item, $data);
+                unset($cart, $items, $item, $data, $product);
                 break;
 
             case 'purchase':
