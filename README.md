@@ -1,8 +1,18 @@
-# Magento: Google Dynamic Remarketing Tag
+# Magento: Google Dynamic Remarketing Tag [![Notice](https://img.shields.io/badge/fork-discontinued-red.svg)](#)
 
 Google remarketing can help you reach people who have previously visited your website as they visit other sites on the Google Display Network or search on Google. Using remarketing, you can show these customers messages tailored to them based on which sections of your site they visited.
 
 With Anaraky GDRT you can simply and easy integrate the Google Dynamic Remarketing Tag in your store's pages.
+
+## Unmaintained:
+
+This was a fork of a free module from magento connect and is discontinued from 12/2017.  New repo is here: [https://github.com/sreichel/magento-Sr-GDRT](https://github.com/sreichel/magento-Sr-GDRT)
+
+### Changes
+
+- fixed product load in loop (what i've introduced :( )
+- removed observer code and use layout update via XML instead, fixes [#1](https://github.com/sreichel/magento-Anaraky-GDRT/issues/1) [#2](https://github.com/sreichel/magento-Anaraky-GDRT/issues/2)
+- support "Google Tag Manager", fixes [#6](https://github.com/sreichel/magento-Anaraky-GDRT/issues/6)
 
 ## Features:
 - Very easy to set up.
